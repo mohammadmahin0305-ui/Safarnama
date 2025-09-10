@@ -16,7 +16,7 @@ const Hero = () => {
     <div className="relative h-[60vh] sm:h-[80vh] text-white overflow-hidden">
       {/* Background Image with Overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-70"
         style={{
           backgroundImage: `var(--gradient-overlay), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop')`
         }}

@@ -37,13 +37,13 @@ const trips: Trip[] = [
   {
     id: "2", 
     title: "Manali",
-    location: "Mountains & Adventure",
-    image: "https://images.unsplash.com/photo-1528459176916-4131a1b708b7?q=80&w=2070&auto=format&fit=crop",
+    location: "Snow-Capped Peaks & Thrills",
+    image: "https://images.unsplash.com/photo-1605538883669-825200433431?q=80&w=2070&auto=format&fit=crop",
     date: "Dec 2024",
     type: "Solo Trip",
     status: "Completed",
-    description: "An unforgettable solo adventure through the Himalayas. The views were absolutely breathtaking.",
-    statusColor: "bg-muted-foreground"
+    description: "An epic solo journey through the snow-covered Himalayas. Conquered treacherous trails, witnessed stunning sunrise over Rohtang Pass, and discovered hidden mountain villages.",
+    statusColor: "bg-accent-indigo"
   }
 ];
 
@@ -60,10 +60,32 @@ const TripCards = ({ onOpenItineraryModal }: TripCardsProps) => {
           Your Trips
         </h3>
         <div className="flex items-center space-x-2">
-          <Button variant="outline" className="flex items-center space-x-2 text-sm font-medium">
-            <SlidersHorizontal className="w-4 h-4" />
-            <span>Filter</span>
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="flex items-center space-x-2 text-sm font-medium border-2 hover:border-primary/50">
+                <SlidersHorizontal className="w-4 h-4" />
+                <span>Filter</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-card/95 backdrop-blur-sm border-primary/20">
+              <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                <span className="font-medium">All Trips</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                <span className="font-medium">Upcoming Only</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                <span className="font-medium">Completed Only</span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                <span className="font-medium">Solo Adventures</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                <span className="font-medium">Group Travels</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           
           {/* Add Trip Dropdown */}
           <DropdownMenu>
@@ -173,17 +195,63 @@ const TripCard = ({ trip }: TripCardProps) => {
         
         {/* Action Buttons */}
         <div className="flex items-center justify-end space-x-2">
-          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary">
-            <Share2 className="w-5 h-5" />
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary border-2 border-transparent hover:border-primary/20">
+                <Share2 className="w-5 h-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-card/95 backdrop-blur-sm border-primary/20">
+              <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                <span className="font-medium">Share with Friends</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                <span className="font-medium">Copy Link</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                <span className="font-medium">Export Itinerary</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
           {trip.status === "Completed" ? (
-            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary">
-              <BookOpenText className="w-5 h-5" />
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary border-2 border-transparent hover:border-primary/20">
+                  <BookOpenText className="w-5 h-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-card/95 backdrop-blur-sm border-primary/20">
+                <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                  <span className="font-medium">View Journal</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                  <span className="font-medium">Add Entry</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                  <span className="font-medium">Photo Gallery</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
-            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary">
-              <Pencil className="w-5 h-5" />
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary border-2 border-transparent hover:border-primary/20">
+                  <Pencil className="w-5 h-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-card/95 backdrop-blur-sm border-primary/20">
+                <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                  <span className="font-medium">Edit Details</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                  <span className="font-medium">Update Itinerary</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-primary/10 focus:bg-primary/10">
+                  <span className="font-medium">Invite Friends</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           )}
         </div>
       </div>
